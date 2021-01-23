@@ -5,9 +5,9 @@ import { ThemeProvider } from "react-native-magnus";
 
 import App from "./src/App";
 
-export default function Main() {
+export default function Main() {  
   return (
-    <ThemeProvider>
+    <ThemeProvider >
       <App />
     </ThemeProvider>
   );

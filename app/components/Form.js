@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 // import { Button, StyleSheet, Text, View } from 'react-native';
 import { db } from "../src/config";
-import { Button, Div, Icon, Text, Input, Select  } from "react-native-magnus";
+import { Button, Div, Icon, Text, Input, Select } from "react-native-magnus";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 export default function Form(props) {
   const [test, setTest] = useState("");
@@ -13,14 +14,10 @@ export default function Form(props) {
   const [social, setSocial] = useState("");
   const [chronic, setChronic] = useState([]);
   const selectRef = React.createRef();
-  const getData = () => {
-    db.ref("/test").on("value", (querySnapShot) => {
-      let data = querySnapShot.val() ? querySnapShot.val() : {};
-      setTest(data);
-    });
-  };
   const handleSubmit = () => {
-    setTest(`${name} ${age} ${gender} ${height} ${weight} ${social} ${chronic}`);
+    setTest(
+      `${name} ${age} ${gender} ${height} ${weight} ${social} ${chronic}`
+    );
     db.ref("/users").push({
       name: name,
       age: age,
@@ -28,19 +25,32 @@ export default function Form(props) {
       height: height,
       weight: weight,
       ssn: social,
-      chronic: chronic.length ? true : false
+      chronic: chronic.length ? true : false,
     });
-    props.closeForm()
+    props.closeForm();
   };
   return (
-    <Div mt="lg" top="30%">
+    <Div mt="lg" top="10%">
+      {/* <Icon name="hearto" fontSize={128} color="green400"/> */}
+      <Div alignItems="center">
+        <FontAwesome5
+          name="hand-holding-medical"
+          size={128}
+          color="#68d391"
+        ></FontAwesome5>
+      </Div>
+      <Text fontWeight="bold" fontSize={30} textAlign="center" mb="2xl">
+        Registration
+      </Text>
       <Input
         mx="md"
         my="md"
         placeholder="Name"
         p={10}
         borderColor="gray300"
+        focusBorderColor="green400"
         borderWidth={1}
+        rounded="circle"
         onChangeText={(name) => setName(name)}
       />
       <Input
@@ -49,7 +59,9 @@ export default function Form(props) {
         placeholder="Age"
         p={10}
         borderColor="gray300"
+        focusBorderColor="green400"
         borderWidth={1}
+        rounded="circle"
         onChangeText={(age) => setAge(age)}
       />
       <Input
@@ -58,7 +70,9 @@ export default function Form(props) {
         placeholder="Gender"
         p={10}
         borderColor="gray300"
+        focusBorderColor="green400"
         borderWidth={1}
+        rounded="circle"
         onChangeText={(gender) => setGender(gender)}
       />
       <Input
@@ -67,7 +81,9 @@ export default function Form(props) {
         placeholder="Height (inches)"
         p={10}
         borderColor="gray300"
+        focusBorderColor="green400"
         borderWidth={1}
+        rounded="circle"
         onChangeText={(height) => setHeight(height)}
       />
       <Input
@@ -76,7 +92,9 @@ export default function Form(props) {
         placeholder="Weight (pounds)"
         p={10}
         borderColor="gray300"
+        focusBorderColor="green400"
         borderWidth={1}
+        rounded="circle"
         onChangeText={(weight) => setWeight(weight)}
       />
 
@@ -88,6 +106,7 @@ export default function Form(props) {
         bg="white"
         borderColor="gray300"
         color="gray600"
+        rounded="circle"
         onPress={() => {
           if (selectRef.current) {
             selectRef.current.open();
@@ -120,20 +139,23 @@ export default function Form(props) {
         placeholder="Social Security ***-**-****"
         p={10}
         borderColor="gray300"
+        focusBorderColor="green400"
         borderWidth={1}
+        rounded="circle"
         secureTextEntry
         onChangeText={(social) => setSocial(social)}
       />
       <Text>{test}</Text>
       <Button
+        mx="md"
+        my="md"
         block
         suffix={
           <Icon position="absolute" right={8} name="arrowright" color="white" />
         }
-        bg="blue600"
+        bg="green400"
         p={12}
         color="white"
-        rounded="circle"
         mt="lg"
         onPress={handleSubmit}
       >
