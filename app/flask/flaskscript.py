@@ -17,10 +17,10 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def getRiskSchedule(userData):
+def getRiskSchedule():
     # Add code to run data through model
     date = runTriage()
-    return { 'date': date }
+    return date
 
 
 def schedule(risk_level):
@@ -31,16 +31,14 @@ def schedule(risk_level):
 def runTriage():
     db = firebase.database()
     users = db.child('/users').get().val()
-    timestamp_by_id = { id: users[id]['timestamp'] for id in users }
-    most_recent = max(timestamp_by_id, key=timestamp_by_id.get)
-    
-    # Run through model here
 
+    # Run through model here
     result = 0.7
     date = schedule(result)
 
-    # Push date result back to db
-    db.child('/users').child(most_recent).update({"schedule":date})
+    for id in users:
+      if 'schedule' in users[id] and users[id]['schedule'] == '0':
+        db.child('/users').child(id).update({"schedule":date})
 
     return date
 
