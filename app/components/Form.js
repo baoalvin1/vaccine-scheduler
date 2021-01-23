@@ -39,7 +39,8 @@ export default function Form(props) {
         my="md"
         placeholder="Name"
         p={10}
-        borderColor="gray"
+        borderColor="gray300"
+        borderWidth={1}
         onChangeText={(name) => setName(name)}
       />
       <Input
@@ -47,7 +48,8 @@ export default function Form(props) {
         my="md"
         placeholder="Age"
         p={10}
-        focusBorderColor="blue"
+        borderColor="gray300"
+        borderWidth={1}
         onChangeText={(age) => setAge(age)}
       />
       <Input
@@ -55,7 +57,8 @@ export default function Form(props) {
         my="md"
         placeholder="Gender"
         p={10}
-        focusBorderColor="blue"
+        borderColor="gray300"
+        borderWidth={1}
         onChangeText={(gender) => setGender(gender)}
       />
       <Input
@@ -63,7 +66,8 @@ export default function Form(props) {
         my="md"
         placeholder="Height (inches)"
         p={10}
-        focusBorderColor="blue"
+        borderColor="gray300"
+        borderWidth={1}
         onChangeText={(height) => setHeight(height)}
       />
       <Input
@@ -71,7 +75,8 @@ export default function Form(props) {
         my="md"
         placeholder="Weight (pounds)"
         p={10}
-        focusBorderColor="blue"
+        borderColor="gray300"
+        borderWidth={1}
         onChangeText={(weight) => setWeight(weight)}
       />
 
@@ -114,7 +119,8 @@ export default function Form(props) {
         my="md"
         placeholder="Social Security ***-**-****"
         p={10}
-        focusBorderColor="blue"
+        borderColor="gray300"
+        borderWidth={1}
         secureTextEntry
         onChangeText={(social) => setSocial(social)}
       />
