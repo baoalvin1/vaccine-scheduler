@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 // import { Button, StyleSheet, Text, View } from 'react-native';
 import { db } from "../src/config";
+import 
+import 
 import { Button, Div, Icon, Text, Input, Select } from "react-native-magnus";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
@@ -13,12 +15,14 @@ export default function Form(props) {
   const [weight, setWeight] = useState("125");
   const [social, setSocial] = useState("");
   const [chronic, setChronic] = useState([]);
+  const [timestamp, setTimestamp] = useState(["0"]);
   const selectRef = React.createRef();
+
   const handleSubmit = () => {
     setTest(
       `${name} ${age} ${gender} ${height} ${weight} ${social} ${chronic}`
     );
-    db.ref("/users").push({
+    let userData = {
       name: name,
       age: age,
       gender: gender,
@@ -26,9 +30,37 @@ export default function Form(props) {
       weight: weight,
       ssn: social,
       chronic: chronic.length ? true : false,
+      timestamp: Date.now,
+    }
+    db.ref("/users").push(userData, function(error) {
+      if (error) {
+        console.log(error);
+        return;
+      } else {
+        runTriage(userData);
+        console.log("Success");
+      }
     });
+
     props.closeForm();
   };
+
+  function runTriage(userData) {
+    console.log("fetching python localhost");
+    fetch('http://localhost:5000/triage/', {
+      method: 'GET',
+      dataType: 'json'
+    })
+      .then(r => r.json())
+      .then(r => {
+        console.log(r)
+        this.setState({
+          pyResp: r
+        })
+      })
+      .catch(err => console.log(err))
+  }
+  
   return (
     <Div mt="lg" top="10%">
       {/* <Icon name="hearto" fontSize={128} color="green400"/> */}
