@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 // import { Button, StyleSheet, Text, View } from 'react-native';
 import { db } from "../src/config";
-import 
-import 
 import { Button, Div, Icon, Text, Input, Select } from "react-native-magnus";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
@@ -30,7 +28,7 @@ export default function Form(props) {
       weight: weight,
       ssn: social,
       chronic: chronic.length ? true : false,
-      timestamp: Date.now,
+      timestamp: Date.now(),
     }
     db.ref("/users").push(userData, function(error) {
       if (error) {

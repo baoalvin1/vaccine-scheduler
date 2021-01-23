@@ -13,10 +13,22 @@ config = {
 
 firebase = Firebase(config)
 
+def schedule(risk_level):
+  # return day as string
+  pass
+
 def runTriage():
     db = firebase.database()
-    x = db.child('/users').get().val()
-    print(x)
+    users = db.child('/users').get().val()
+    timestamp_by_id = { id: users[id]['timestamp'] for id in users }
+    most_recent = max(timestamp_by_id, key=timestamp_by_id.get)
+    
+    # Run through model here
+
+    result = 0.7
+    date = schedule(result)
+
+    return '2021-01-22'
 
 if __name__=='__main__':
     runTriage()
