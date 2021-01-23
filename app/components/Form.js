@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { db } from "../src/config";
 import { Button, Div, Icon, Text, Input, Select  } from "react-native-magnus";
 
-export default function Form() {
+export default function Form(props) {
   const [test, setTest] = useState("");
   const [name, setName] = useState("Name");
   const [age, setAge] = useState("0");
@@ -27,9 +27,10 @@ export default function Form() {
       gender: gender,
       height: height,
       weight: weight,
-      social: social,
+      ssn: social,
       chronic: chronic.length ? true : false
     });
+    props.closeForm()
   };
   return (
     <Div mt="lg" top="30%">
