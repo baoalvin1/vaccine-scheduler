@@ -17,14 +17,14 @@ export default function Map(props) {
           longitudeDelta: 0.0421,
         }}
       >
-        <Marker coordinate={{ latitude: 33.7756, longitude: -84.3963 }}>
+        <Marker pinColor="pink" coordinate={{ latitude: 33.7756, longitude: -84.3963 }}>
           <Callout alphaHitTest tooltip>
             <CustomCallout>
-              <Text>{`This is a custom callout bubble view`}</Text>
+              {/* <Text>{`This is a custom callout bubble view`}</Text> */}
               <CalloutSubview
                 style={{
                   width: "auto",
-                  backgroundColor: "rgba(255,255,255,0.7)",
+                  backgroundColor: "#ffffff",
                   paddingHorizontal: 6,
                   paddingVertical: 6,
                   borderRadius: 12,
@@ -34,7 +34,7 @@ export default function Map(props) {
                 }}
                 onPress={props.closeMap}
               >
-                <Text textAlign="center">Schedule Here</Text>
+                <Text fontFamily="Futura" textAlign="center">Schedule An {"\n"} Appointment</Text>
               </CalloutSubview>
             </CustomCallout>
           </Callout>

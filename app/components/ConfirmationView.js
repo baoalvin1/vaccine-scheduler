@@ -5,7 +5,7 @@ export default function ConfirmationView() {
   return (
     <Div>
       <Icon mt="30%" name="heart"/>
-      <Text textAlign="center">Hello World!</Text>
+      <Text fontFamily="Futura" textAlign="center">Hello World!</Text>
     </Div>
   );
 }

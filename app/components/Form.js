@@ -35,7 +35,7 @@ export default function Form(props) {
         console.log(error);
         return;
       } else {
-        runTriage();
+        // runTriage();
         console.log("Success");
       }
     });
@@ -44,14 +44,14 @@ export default function Form(props) {
   };
 
   function runTriage() {
-    const { spawn } = require('child_process');
-    const ls = spawn('ls', []);
-    ls.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
-    ls.stderr.on('data', (data) => {
-      console.error(`stderr: ${data}`);
-    });
+    // const { spawn } = require('child_process');
+    // const ls = spawn('ls', []);
+    // ls.stdout.on('data', (data) => {
+    //   console.log(`stdout: ${data}`);
+    // });
+    // ls.stderr.on('data', (data) => {
+    //   console.error(`stderr: ${data}`);
+    // });
   }
   
   return (
