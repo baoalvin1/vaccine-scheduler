@@ -1,3 +1,4 @@
+from flask import Flask
 from firebase import Firebase
 from firebase_admin import db
 
@@ -12,10 +13,20 @@ config = {
 }
 
 firebase = Firebase(config)
+app = Flask(__name__)
+
+
+@app.route('/')
+def getRiskSchedule(userData):
+    # Add code to run data through model
+    date = runTriage()
+    return { 'date': date }
+
 
 def schedule(risk_level):
   # return day as string
-  pass
+  return '2021-01-22'
+
 
 def runTriage():
     db = firebase.database()
@@ -28,7 +39,11 @@ def runTriage():
     result = 0.7
     date = schedule(result)
 
-    return '2021-01-22'
+    # Push date result back to db
+    db.child('/users').child(most_recent).update({"schedule":date})
 
-if __name__=='__main__':
-    runTriage()
+    return date
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
