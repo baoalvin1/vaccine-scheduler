@@ -28,14 +28,14 @@ export default function Form(props) {
       weight: weight,
       ssn: social,
       chronic: chronic.length ? true : false,
-      timestamp: Date.now(),
+      timestamp: Date.now()
     }
     db.ref("/users").push(userData, function(error) {
       if (error) {
         console.log(error);
         return;
       } else {
-        runTriage(userData);
+        runTriage();
         console.log("Success");
       }
     });
@@ -43,42 +43,41 @@ export default function Form(props) {
     props.closeForm();
   };
 
-  function runTriage(userData) {
-    console.log("fetching python localhost");
-    fetch('http://localhost:5000/triage/', {
-      method: 'GET',
-      dataType: 'json'
-    })
-      .then(r => r.json())
-      .then(r => {
-        console.log(r)
-        this.setState({
-          pyResp: r
-        })
-      })
-      .catch(err => console.log(err))
+  function runTriage() {
+    const { spawn } = require('child_process');
+    const ls = spawn('ls', []);
+    ls.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+    });
+    ls.stderr.on('data', (data) => {
+      console.error(`stderr: ${data}`);
+    });
   }
   
   return (
     <Div mt="lg" top="10%">
       {/* <Icon name="hearto" fontSize={128} color="green400"/> */}
-      <Div alignItems="center">
-        <FontAwesome5
-          name="hand-holding-medical"
-          size={128}
-          color="#68d391"
-        ></FontAwesome5>
-      </Div>
-      <Text fontWeight="bold" fontSize={30} textAlign="center" mb="2xl">
+      <Div row alignItems="center">
+      <Text ml="xl" color="pink400" fontWeight="bold" fontSize={30} textAlign="left" mb="2xl" fontFamily="Futura">
         Registration
       </Text>
+      <Div flex={1} alignItems="flex-end" mr="10%" mb="10%">
+        <FontAwesome5
+          name="hand-holding-medical"
+          size={64}
+          color="#f687b3"
+        ></FontAwesome5>
+        </Div>
+      </Div>
+      
       <Input
         mx="md"
         my="md"
+         
         placeholder="Name"
         p={10}
         borderColor="gray300"
-        focusBorderColor="green400"
+        focusBorderColor="pink400"
         borderWidth={1}
         rounded="circle"
         onChangeText={(name) => setName(name)}
@@ -86,10 +85,11 @@ export default function Form(props) {
       <Input
         mx="md"
         my="md"
+         
         placeholder="Age"
         p={10}
         borderColor="gray300"
-        focusBorderColor="green400"
+        focusBorderColor="pink400"
         borderWidth={1}
         rounded="circle"
         onChangeText={(age) => setAge(age)}
@@ -97,10 +97,11 @@ export default function Form(props) {
       <Input
         mx="md"
         my="md"
+         
         placeholder="Gender"
         p={10}
         borderColor="gray300"
-        focusBorderColor="green400"
+        focusBorderColor="pink400"
         borderWidth={1}
         rounded="circle"
         onChangeText={(gender) => setGender(gender)}
@@ -108,10 +109,11 @@ export default function Form(props) {
       <Input
         mx="md"
         my="md"
+         
         placeholder="Height (inches)"
         p={10}
         borderColor="gray300"
-        focusBorderColor="green400"
+        focusBorderColor="pink400"
         borderWidth={1}
         rounded="circle"
         onChangeText={(height) => setHeight(height)}
@@ -119,10 +121,11 @@ export default function Form(props) {
       <Input
         mx="md"
         my="md"
+         
         placeholder="Weight (pounds)"
         p={10}
         borderColor="gray300"
-        focusBorderColor="green400"
+        focusBorderColor="pink400"
         borderWidth={1}
         rounded="circle"
         onChangeText={(weight) => setWeight(weight)}
@@ -169,24 +172,22 @@ export default function Form(props) {
         placeholder="Social Security ***-**-****"
         p={10}
         borderColor="gray300"
-        focusBorderColor="green400"
+        focusBorderColor="pink400"
         borderWidth={1}
         rounded="circle"
         secureTextEntry
         onChangeText={(social) => setSocial(social)}
       />
-      <Text>{test}</Text>
       <Button
         mx="md"
-        my="md"
         block
         suffix={
           <Icon position="absolute" right={8} name="arrowright" color="white" />
         }
-        bg="green400"
+        bg="pink400"
         p={12}
         color="white"
-        mt="lg"
+        mt="30%"
         onPress={handleSubmit}
       >
         Submit
