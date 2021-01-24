@@ -50,7 +50,7 @@ export default function Form(props) {
     fetch('/').then(res => res.json()).then(data => {
       return data.date;
     });
-    return "2021-01-22";
+    return "0";
   }
   
   return (
