@@ -7,12 +7,7 @@ import CustomCallout from "./CustomCallout";
 import Instruction from "./Instruction"
 
 export default function Map(props) {
-  const [instruction, setInstruction] = useState(true);
-  useEffect(() => {
-    let mounted = true;
-    setTimeout(function(){ setInstruction(false); }, 3000);
-    return () => (mounted = false);
-  }, []);
+  
   return (
     <View style={{ position: "relative", height: "100%" }}>
       <MapView
@@ -24,7 +19,7 @@ export default function Map(props) {
           longitudeDelta: 0.0421,
         }}
       >
-        
+        <Instruction/>
         <Marker
           pinColor="pink"
           coordinate={{ latitude: 33.772819, longitude: -84.392857 }}
@@ -79,7 +74,7 @@ export default function Map(props) {
                 <Text
                   fontFamily="Futura"
                   color="#4f5b66"
-                >{`Stamps Vaccine Center`}</Text>
+                >{`West Village Vaccine Center`}</Text>
                 <Text fontFamily="Futura" textAlign="center" color="#008ecc">
                   Schedule An {"\n"} Appointment
                 </Text>

@@ -6,6 +6,7 @@ export default function CalendarView(props) {
   const [times, setTimes] = useState([]);
   const selectRef = React.createRef();
   const handleContinue = () => {
+    props.updateTime(times[0])
     props.closeCalendar()
   }
   return (

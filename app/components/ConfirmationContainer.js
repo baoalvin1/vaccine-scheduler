@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import { db } from "../src/config";
 import ConfirmationView from "./ConfirmationView"
 
-export default function ConfirmationContainer() {
+export default function ConfirmationContainer(props) {
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function ConfirmationContainer() {
       {isLoading ? (
         <Loading />
       ) : (
-        <ConfirmationView />
+        <ConfirmationView finalTime={props.finalTime} finalDate={props.finalDate}/>
       )}
     </Div>
   );

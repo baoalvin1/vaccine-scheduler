@@ -22,6 +22,7 @@ export default function CalendarContainer(props) {
           }
         }
         setDate(final)
+        props.updateDate(final)
         setIsLoading(false);
       }
     });
@@ -33,7 +34,7 @@ export default function CalendarContainer(props) {
       {isLoading ? (
         <Loading />
       ) : (
-        <CalendarView closeCalendar={props.closeCalendar} date={date}/>
+        <CalendarView closeCalendar={props.closeCalendar} date={date} updateTime={props.updateTime}/>
       )}
     </Div>
   );
