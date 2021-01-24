@@ -14,6 +14,7 @@ export default function Form(props) {
   const [social, setSocial] = useState("");
   const [chronic, setChronic] = useState([]);
   const [timestamp, setTimestamp] = useState(["0"]);
+  const [schedule, setSchedule] = useState(["0"]);
   const selectRef = React.createRef();
 
   const handleSubmit = () => {
@@ -28,15 +29,16 @@ export default function Form(props) {
       weight: weight,
       ssn: social,
       chronic: chronic.length ? true : false,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      schedule: "2021-01-22"
     }
     db.ref("/users").push(userData, function(error) {
       if (error) {
         console.log(error);
         return;
       } else {
-        // runTriage();
-        console.log("Success");
+        let date = runTriage();
+        console.log(date);
       }
     });
 
@@ -44,14 +46,11 @@ export default function Form(props) {
   };
 
   function runTriage() {
-    // const { spawn } = require('child_process');
-    // const ls = spawn('ls', []);
-    // ls.stdout.on('data', (data) => {
-    //   console.log(`stdout: ${data}`);
-    // });
-    // ls.stderr.on('data', (data) => {
-    //   console.error(`stderr: ${data}`);
-    // });
+    console.log("fetching python localhost");
+    fetch('/').then(res => res.json()).then(data => {
+      return data.date;
+    });
+    return "2021-01-22";
   }
   
   return (
