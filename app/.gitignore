@@ -11,3 +11,4 @@ web-build/
 src
 # macOS
 .DS_Store
+flask/config.py

@@ -47,24 +47,21 @@ export default function Form(props) {
 
   function runTriage() {
     console.log("fetching python localhost");
-    fetch('/').then(res => res.json()).then(data => {
-      return data.date;
-    });
-    return "2021-01-22";
+    return "0";
   }
   
   return (
     <Div mt="lg" top="10%">
       {/* <Icon name="hearto" fontSize={128} color="green400"/> */}
       <Div row alignItems="center">
-      <Text ml="xl" color="pink400" fontWeight="bold" fontSize={30} textAlign="left" mb="2xl" fontFamily="Futura">
+      <Text ml="xl" color="pink600" fontWeight="bold" fontSize={30} textAlign="left" mb="2xl" fontFamily="Futura">
         Registration
       </Text>
       <Div flex={1} alignItems="flex-end" mr="10%" mb="10%">
         <FontAwesome5
           name="hand-holding-medical"
           size={64}
-          color="#f687b3"
+          color="#d53f8c"
         ></FontAwesome5>
         </Div>
       </Div>
@@ -183,7 +180,7 @@ export default function Form(props) {
         suffix={
           <Icon position="absolute" right={8} name="arrowright" color="white" />
         }
-        bg="pink400"
+        bg="pink600"
         p={12}
         color="white"
         mt="30%"

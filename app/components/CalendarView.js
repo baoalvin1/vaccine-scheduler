@@ -14,8 +14,8 @@ export default function CalendarView(props) {
         Scheduler
       </Text>
       <Calendar
-        minDate={"2021-01-22"}
-        maxDate={"2021-01-22"}
+        minDate={props.date}
+        maxDate={props.date}
         onDayPress={() => {
           if (selectRef.current) {
             selectRef.current.open();
@@ -33,7 +33,7 @@ export default function CalendarView(props) {
         suffix={
           <Icon position="absolute" right={8} name="arrowright" color="white" />
         }
-        bg="pink400"
+        bg="pink600"
         p={12}
         color="white"
         mt="lg"

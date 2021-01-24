@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor: '#ffffff',
     paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingVertical: 0,
     borderRadius: 6,
-    borderColor: '#f687b3',
+    borderColor: '#D53F8C',
     borderWidth: 0.5,
   },
   amount: {
@@ -45,19 +45,19 @@ const styles = StyleSheet.create({
   },
   arrow: {
     backgroundColor: 'transparent',
-    borderWidth: 16,
+    borderWidth: 0,
     borderColor: 'transparent',
-    borderTopColor: '#f687b3',
+    borderTopColor: '#D53F8C',
     alignSelf: 'center',
-    marginTop: -32,
+    marginTop: -50,
   },
   arrowBorder: {
     backgroundColor: 'transparent',
-    borderWidth: 16,
+    borderWidth: 18,
     borderColor: 'transparent',
-    borderTopColor: '#f687b3',
+    borderTopColor: '#D53F8C',
     alignSelf: 'center',
-    marginTop: -0.5,
+    marginTop: -5,
   },
 });
 
