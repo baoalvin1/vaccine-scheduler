@@ -10,19 +10,19 @@ export default function CalendarView(props) {
   }
   return (
     <Div top="30%">
-      <Text fontSize={30} textAlign="center" mb="2xl">
+      <Text fontFamily="Futura" fontSize={30} textAlign="center" mb="2xl">
         Scheduler
       </Text>
       <Calendar
-        minDate={"2021-01-22"}
-        maxDate={"2021-01-22"}
+        minDate={props.date}
+        maxDate={props.date}
         onDayPress={() => {
           if (selectRef.current) {
             selectRef.current.open();
           }
         }}
       />
-      <Text fontSize={14} textAlign="center" mt="2xl">
+      <Text fontFamily="Futura" fontSize={14} textAlign="center" mt="2xl">
         Our algorithm selects the best available day for you based on risk
         factors
       </Text>
@@ -33,7 +33,7 @@ export default function CalendarView(props) {
         suffix={
           <Icon position="absolute" right={8} name="arrowright" color="white" />
         }
-        bg="green400"
+        bg="pink600"
         p={12}
         color="white"
         mt="lg"
@@ -66,7 +66,6 @@ export default function CalendarView(props) {
           </Select.Option>
         )}
       />
-      <Text>{times}</Text>
     </Div>
   );
 }

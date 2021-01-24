@@ -6,12 +6,22 @@ import { db } from "../src/config";
 
 export default function CalendarContainer(props) {
   const [isLoading, setIsLoading] = useState(true);
+  const [date, setDate] = useState("2021-01-24");
 
   useEffect(() => {
     let mounted = true;
-    db.ref("/test").on("value", (querySnapShot) => {
+    db.ref("/users").on("value", (querySnapShot) => {
       if (mounted) {
         let data = querySnapShot.val() ? querySnapShot.val() : {};
+        let num = 0
+        let final;
+        for (let entry in data) {
+          if (data[entry]["timestamp"] > num) {
+            final = data[entry]["schedule"]
+            num = data[entry]["timestamp"]
+          }
+        }
+        setDate(final)
         setIsLoading(false);
       }
     });
@@ -23,7 +33,7 @@ export default function CalendarContainer(props) {
       {isLoading ? (
         <Loading />
       ) : (
-        <CalendarView closeCalendar={props.closeCalendar} />
+        <CalendarView closeCalendar={props.closeCalendar} date={date}/>
       )}
     </Div>
   );

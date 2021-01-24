@@ -17,14 +17,17 @@ export default function Map(props) {
           longitudeDelta: 0.0421,
         }}
       >
-        <Marker coordinate={{ latitude: 33.7756, longitude: -84.3963 }}>
+        <Marker
+          pinColor="pink"
+          coordinate={{ latitude: 33.772819, longitude: -84.392857 }}
+          image={require("../assets/pinkmarker.png")}
+        >
           <Callout alphaHitTest tooltip>
             <CustomCallout>
-              <Text>{`This is a custom callout bubble view`}</Text>
               <CalloutSubview
                 style={{
                   width: "auto",
-                  backgroundColor: "rgba(255,255,255,0.7)",
+                  backgroundColor: "#ffffff",
                   paddingHorizontal: 6,
                   paddingVertical: 6,
                   borderRadius: 12,
@@ -34,7 +37,44 @@ export default function Map(props) {
                 }}
                 onPress={props.closeMap}
               >
-                <Text textAlign="center">Schedule Here</Text>
+                <Text
+                  fontFamily="Futura"
+                  color="#4f5b66"
+                >{`Bobby Dodd Vaccine Center`}</Text>
+                <Text fontFamily="Futura" textAlign="center" color="#008ecc">
+                  Schedule An {"\n"} Appointment
+                </Text>
+              </CalloutSubview>
+            </CustomCallout>
+          </Callout>
+        </Marker>
+        <Marker
+          pinColor="pink"
+          coordinate={{ latitude: 33.7796082, longitude: -84.4050402 }}
+          image={require("../assets/pinkmarker.png")}
+        >
+          <Callout alphaHitTest tooltip>
+            <CustomCallout>
+              <CalloutSubview
+                style={{
+                  width: "auto",
+                  backgroundColor: "#ffffff",
+                  paddingHorizontal: 6,
+                  paddingVertical: 6,
+                  borderRadius: 12,
+                  alignItems: "center",
+                  marginHorizontal: 10,
+                  marginVertical: 10,
+                }}
+                onPress={props.closeMap}
+              >
+                <Text
+                  fontFamily="Futura"
+                  color="#4f5b66"
+                >{`West Village Vaccine Center`}</Text>
+                <Text fontFamily="Futura" textAlign="center" color="#008ecc">
+                  Schedule An {"\n"} Appointment
+                </Text>
               </CalloutSubview>
             </CustomCallout>
           </Callout>
