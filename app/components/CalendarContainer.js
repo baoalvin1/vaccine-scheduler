@@ -10,22 +10,26 @@ export default function CalendarContainer(props) {
 
   useEffect(() => {
     let mounted = true;
-    db.ref("/users").on("value", (querySnapShot) => {
-      if (mounted) {
-        let data = querySnapShot.val() ? querySnapShot.val() : {};
-        let num = 0
-        let final;
-        for (let entry in data) {
-          if (data[entry]["timestamp"] > num) {
-            final = data[entry]["schedule"]
-            num = data[entry]["timestamp"]
+    setTimeout(function () {
+      db.ref("/users").on("value", (querySnapShot) => {
+        if (mounted) {
+          let data = querySnapShot.val() ? querySnapShot.val() : {};
+          let num = 0;
+          let final;
+          for (let entry in data) {
+            if (data[entry]["timestamp"] > num) {
+              final = data[entry]["schedule"];
+              num = data[entry]["timestamp"];
+            }
           }
+          setDate(final);
+          console.log(final);
+          props.updateDate(final);
+          setIsLoading(false);
         }
-        setDate(final)
-        props.updateDate(final)
-        setIsLoading(false);
-      }
-    });
+      });
+    }, 8000);
+
     return () => (mounted = false);
   }, []);
 
@@ -34,7 +38,11 @@ export default function CalendarContainer(props) {
       {isLoading ? (
         <Loading />
       ) : (
-        <CalendarView closeCalendar={props.closeCalendar} date={date} updateTime={props.updateTime}/>
+        <CalendarView
+          closeCalendar={props.closeCalendar}
+          date={date}
+          updateTime={props.updateTime}
+        />
       )}
     </Div>
   );

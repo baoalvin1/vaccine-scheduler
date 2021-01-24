@@ -15,6 +15,11 @@ export default function CalendarView(props) {
         Scheduler
       </Text>
       <Calendar
+        theme={{
+          dayTextColor: '#D53F8C',
+          selectedDayTextColor: '#D53F8C',
+          arrowColor: '#D53F8C',
+        }}
         minDate={props.date}
         maxDate={props.date}
         onDayPress={() => {
